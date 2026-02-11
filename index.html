@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THREE JS BOILERPLATE + LEARNING TOY</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<canvas id="app"></canvas>
+
+<div class="left-panel">
+  <!-- CAMERA INFO - TOP LEFT -->
+  <div id="camera-info" class="camera-panel">
+    <div class="camera-panel-title">📸 PAPARAZZI 📸</div>
+    <div id="cam-x">X: 0.00</div>
+    <div id="cam-y">Y: 0.00</div>
+    <div id="cam-z">Z: 0.00</div>
+  </div>
+
+
+
+  <!-- CALCULUS VISUAL -->
+  <div class="calculus-panel">
+    <div class="calculus-panel-title">CALC VISUAL</div>
+
+    <div class="sub-panel">
+      <div class="sub-title position">Position (p)</div>
+      <div id="pos-x" class="indent">x: 0.00 m</div>
+      <div id="pos-y" class="indent">y: 0.00 m</div>
+      <div id="pos-z" class="indent">z: 0.00 m</div>
+    </div>
+
+    <div class="sub-panel">
+      <div class="sub-title velocity">Velocity (dp/dt)</div>
+      <div id="vel-speed" class="indent">Speed: 0.00 m/s</div>
+      <div id="vel-x" class="indent small">vₓ: 0.00 m/s</div>
+      <div id="vel-y" class="indent small">vᵧ: 0.00 m/s</div>
+      <div id="vel-z" class="indent small">vᵤ: 0.00 m/s</div>
+    </div>
+
+    <div class="sub-panel">
+      <div class="sub-title acceleration">Acceleration (dv/dt)</div>
+      <div id="acc-mag" class="indent">Magnitude: 0.00 m/s²</div>
+      <div id="acc-y" class="indent small">aᵧ: -9.80 m/s²</div>
+    </div>
+
+
+  </div>
+
+</div>
+
+
+
+<!-- CONTROLS - RIGHT SIDE -->
+<div class="right-panel">
+    <div class="right-panel-title">CONTROLS</div>
+
+
+
+  <!-- CONTROLS -->
+  <div class="controls">
+SHOW / HIDE:
+
+    <div class="controls-grid">
+        <button id="toggle-velocity" class="toggle-switch green active">
+        <img src="assets/images/omega.png" class="controls-img">
+        </button>
+
+        <button id="toggle-acceleration" class="toggle-switch yellow active">
+            <img src="assets/images/alpha.png" class="controls-img">
+        </button>
+
+        <button id="toggle-trail" class="toggle-switch cyan active">
+        TRAIL
+        </button>
+
+        <button id="toggle-physics" class="toggle-switch pink active">
+        BALL
+        </button>
+    </div>
+    <p style="text-align: center;"> - - - - - - - - - - - - </p>
+
+    <button id="reset-physics" class="reset-button">
+      RESET
+    </button>
+
+    <p style="text-align: center; margin-top: 20px; color: #FFC7FF;"> - - - PHYSICS PROPS - - - </p>
+
+    <!-- Gravity Slider -->
+    <div class="slider-container">
+      <label for="gravity-slider" class="slider-label">
+        GRAVITY: <span id="gravity-value">9.8</span> m/s²
+      </label>
+      <input type="range" id="gravity-slider" class="slider" 
+             min="0" max="20" step="0.1" value="9.8">
+    </div>
+
+    <!-- Friction Slider -->
+    <div class="slider-container">
+      <label for="friction-slider" class="slider-label">
+        FRICTION: <span id="friction-value">0.98</span>
+      </label>
+      <input type="range" id="friction-slider" class="slider" 
+             min="0.8" max="1.0" step="0.01" value="0.98">
+    </div>
+
+    <!-- Bounciness Slider -->
+    <div class="slider-container">
+      <label for="bounce-slider" class="slider-label">
+        BOUNCE: <span id="bounce-value">0.70</span>
+      </label>
+      <input type="range" id="bounce-slider" class="slider" 
+             min="0" max="1.0" step="0.05" value="0.70">
+    </div>
+
+    <!-- Air Resistance Slider -->
+    <div class="slider-container">
+      <label for="air-slider" class="slider-label">
+        AIR RESIST: <span id="air-value">0.99</span>
+      </label>
+      <input type="range" id="air-slider" class="slider" 
+             min="0.9" max="1.0" step="0.01" value="0.99">
+    </div>
+
+    <!-- Radius Slider -->
+    <div class="slider-container">
+      <label for="radius-slider" class="slider-label">
+        RADIUS: <span id="radius-value">0.50</span> m
+      </label>
+      <input type="range" id="radius-slider" class="slider" 
+             min="0.1" max="2.0" step="0.1" value="0.5">
+    </div>
+
+  </div>
+</div>
+
+  <script type="module" src="/src/main.js"></script>
+
+
+  <script>
+function setupToggle(id, callback) {
+  const btn = document.getElementById(id);
+
+  btn.addEventListener("click", () => {
+    btn.classList.toggle("active");
+    const isActive = btn.classList.contains("active");
+    callback(isActive);
+  });
+}
+
+setupToggle("toggle-physics", (on) => {
+  physicsEnabled = on;
+});
+
+setupToggle("toggle-trail", (on) => {
+  trailVisible = on;
+});
+
+setupToggle("toggle-velocity", (on) => {
+  velocityVisible = on;
+});
+
+setupToggle("toggle-acceleration", (on) => {
+  accelerationVisible = on;
+});
+
+
+  </script>
+</body>
+</html>
