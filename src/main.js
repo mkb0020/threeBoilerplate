@@ -13,7 +13,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.set(5, 5, 5);
+camera.position.set(7, 7, 7);
 camera.lookAt(0, 0, 0);
 
 // RENDERER
@@ -40,7 +40,7 @@ const axesHelper = new THREE.AxesHelper(5);
 scene.add(axesHelper);
 
 // GROUND (XZ PLANE - Y is up/down)
-const groundGeometry = new THREE.PlaneGeometry(10, 10);
+const groundGeometry = new THREE.PlaneGeometry(20, 20);
 const groundMaterial = new THREE.MeshStandardMaterial({
   color: 0x3d0264, // DARK PURPLE GROUND
   side: THREE.DoubleSide,
@@ -48,17 +48,16 @@ const groundMaterial = new THREE.MeshStandardMaterial({
   opacity: 0.4,
 });
 const ground = new THREE.Mesh(groundGeometry, groundMaterial);
-ground.rotation.x = -Math.PI / 2; // Rotate to be horizontal (XZ plane)
+ground.rotation.x = -Math.PI / 2; // ROTATE TO BE HORIZONTAL (XZ plane)
 scene.add(ground);
 
-// GRID HELPER on XZ plane (horizontal)
-const gridHelper = new THREE.GridHelper(10, 10, 0xc71585, 0x00FFFF);
+// GRID HELPER  XZ 
+const gridHelper = new THREE.GridHelper(20, 20, 0xc71585, 0x00FFFF);
 scene.add(gridHelper);
 
-// PHYSICS BALL (pass controls for camera locking!)
+// PHYSICS BALL 
 const physicsBall = new PhysicsBall(scene, camera, renderer, controls);
 
-// Helper function to toggle button state
 function toggleButton(buttonId, isActive) {
   const button = document.getElementById(buttonId);
   if (isActive) {
